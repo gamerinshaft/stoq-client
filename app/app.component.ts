@@ -12,7 +12,7 @@ import {SignupComponent} from './signup/signup.component';
 @Component({
     selector: 'my-app',
     templateUrl: 'app/app.component.html',
-    styleUrls: ['app/app.component.css'],
+    styleUrls: ['app/app.component.scss'],
     directives: [ROUTER_DIRECTIVES, HeaderComponent, SidebarComponent, HeroDetailComponent, LoginComponent],
     providers: [HeroService]
 })
