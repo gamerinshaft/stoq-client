@@ -3,7 +3,7 @@ import {Router} from 'angular2/router';
 @Component({
     selector: 'header',
     templateUrl: 'app/layouts/header/header.component.html',
-    styleUrls: ['app/layouts/header/header.component.css']
+    styleUrls: ['app/layouts/header/header.component.scss']
 })
 
 export class HeaderComponent {
