@@ -1,0 +1,25 @@
+.login {
+  position: absolute;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(105, 187, 212, 0.72);
+}
+
+.container {
+  width: 80%;
+  margin: 60px auto;
+}
+
+h1 {
+  font-size: 40px;
+  color: white;
+}
+
+input {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid blue;
+}
