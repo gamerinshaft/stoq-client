@@ -13,7 +13,7 @@ import {SignupComponent} from './signup/signup.component';
     selector: 'my-app',
     templateUrl: 'app/app.component.html',
     styleUrls: ['app/app.component.scss'],
-    directives: [ROUTER_DIRECTIVES, HeaderComponent, SidebarComponent, HeroDetailComponent, LoginComponent],
+    directives: [ROUTER_DIRECTIVES, HeaderComponent, SidebarComponent, HeroDetailComponent, LoginComponent, SignupComponent],
     providers: [HeroService]
 })
 
@@ -25,6 +25,7 @@ import {SignupComponent} from './signup/signup.component';
 
 export class AppComponent implements OnInit {
   public title = 'Tour of Heros';
+  public modal = 'signup';
   public heroes: Hero[];
   public selectedHero: Hero;
 
