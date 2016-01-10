@@ -7,3 +7,42 @@
   margin: 0px;
   display: inline-block;
 }
+
+.right-menu {
+  display: inline-block;
+  right: 0px;
+  padding: 0px 24px;
+  position: absolute;
+}
+
+.right-menu > * {
+  float: left;
+  padding: 8px 24px;
+  font-size: 16px;
+  margin: 10px 0px;
+  height: 40px;
+  box-sizing: border-box;
+}
+
+.right-menu:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.create-course {
+  background-color: rgb(255, 77, 77);
+  color: white;
+}
+
+.divider {
+  color: rgb(56, 90, 107);
+}
+
+.signup, .login {
+  color: rgb(64, 161, 217);
+}
+
+.right-menu .active {
+  border: solid 1px rgb(64, 161, 217);
+}
