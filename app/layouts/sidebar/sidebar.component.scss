@@ -1,0 +1,16 @@
+ul#menu{
+  padding: 24px 0px;
+  list-style: none;
+  margin: 0px;
+}
+
+ul#menu li{
+  padding: 16px;
+  cursor: pointer;
+  color: rgba(43,75,92,0.8);
+}
+
+ul#menu li:hover{
+  background-color: rgb(66,169,269);
+  color: white;
+}
