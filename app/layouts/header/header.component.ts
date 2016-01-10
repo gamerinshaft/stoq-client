@@ -9,5 +9,13 @@ import {Router} from 'angular2/router';
 export class HeaderComponent {
   public title = 'Stoq'
   constructor(private _router: Router) { }
+
+  navigateToLogin() {
+    this._router.navigate(['Login', {}]);
+  }
+
+  navigateToSingup() {
+      this._router.navigate(['Signup', {}]);
+  }
 }
 
