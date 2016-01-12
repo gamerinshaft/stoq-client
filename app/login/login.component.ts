@@ -3,13 +3,18 @@ import {Router} from 'angular2/router'
 @Component({
     selector: 'login',
     templateUrl: 'app/login/login.component.html',
-    styleUrls: ['app/login/login.component.css']
+    styleUrls: ['app/login/login.component.css'],
+    inputs: ['modal']
 })
 export class LoginComponent {
   constructor(private _router: Router) {}
 
   goSignup() {
       this._router.navigate(['Signup', {}]);
+  }
+
+  hoge() {
+    console.log("login")
   }
 }
 

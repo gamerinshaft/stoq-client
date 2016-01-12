@@ -13,10 +13,6 @@
   <my-hero-detail [hero]="selectedHero"></my-hero-detail>
 </main>
 
-<div *ngIf="modal === 'login'">
-  <login ></login>
-</div>
+<login [modal] = "modal"></login>
+<signup [modal] = "modal"></signup>
 
-<div *ngIf="modal === 'signup'">
-  <signup ></signup>
-</div>
