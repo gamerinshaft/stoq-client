@@ -25,7 +25,10 @@ export class DashboardComponent implements OnInit {
   public heroes: Hero[];
   public selectedHero: Hero;
 
-  constructor(private _heroService: HeroService, private _router: Router, private _http: Http) {}
+  constructor(private _heroService: HeroService, private _router: Router, private _http: Http) {
+      console.log(this.callGetAnonymousApi('http://api.stoq.jp/api/v1/courses', { hoge: "wa", huga: "ho" }))
+    console.log(this.response)
+  }
 
 
   getHeroes() {
@@ -34,8 +37,6 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.getHeroes();
-    console.log(this.callGetAnonymousApi())
-    console.log(this.response)
     // if(!localStorage.getItem("auth_token")){
     //   console.log("nothing auth_token");
     //   this._router.navigate(['Login', { }]);
@@ -44,15 +45,27 @@ export class DashboardComponent implements OnInit {
 
   onSelect(hero: Hero) { this.selectedHero = hero; }
 
-  callGetAnonymousApi() {
-    this._callGetApi('Anonymous', 'http://api.stoq.jp/api/v1/courses');
+  callGetAnonymousApi(url: string, params?: any) {
+    if(params) {
+      this._callGetApi('Anonymous', url, params);
+    }else {
+      this._callGetApi('Anonymous', url);
+    }
   }
 
   callGetSecuredApi() {
     this._callGetApi('Secured', 'http://localhost:3001/api/protected/random-quote');
   }
 
-  _callGetApi(type, url) {
+  _callGetApi(type: string, url: string, params?: any) {
+    console.log(params)
+    if (params) {
+      log = Object.keys(params).map(function(value, index) {
+          return params[value]
+      });
+      console.log("kiteru");
+      console.log(log);
+    }
     this.response = null;
     if (type === 'Anonymous') {
       // For non-protected routes, just use Http
