@@ -8,7 +8,16 @@ import {HTTP_PROVIDERS, Http, Headers } from 'angular2/http';
 })
 @Injectable()
 export class ApiService {
+    public api_path = 'http://api.stoq.jp/api/v1'
     constructor(private _http: Http) { }
+
+
+    // コース一覧を取得
+    getCourses() {
+        this._callGetApi('Anonymous', this.api_path + '/courses');
+    }
+
+
     callGetAnonymousApi(url: string, params?: any) {
         if (params) {
             this._callGetApi('Anonymous', url, params);

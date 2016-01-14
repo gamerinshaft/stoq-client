@@ -25,7 +25,7 @@ export class DashboardComponent implements OnInit {
   public selectedHero: Hero;
 
   constructor(private _heroService: HeroService, private _router: Router, private _http: ApiService) {
-      console.log(_http.callGetAnonymousApi('http://api.stoq.jp/api/v1/courses', { hoge: "wa", huga: "ho" }))
+    console.log(_http.getCourses());
     console.log(this.response)
   }
 
