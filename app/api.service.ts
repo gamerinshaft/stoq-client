@@ -16,13 +16,23 @@ export class ApiService {
     constructor(private _http: Http) {}
 
 
-    // ユーザー登録
+    // ユーザー登録 email, password, password_confirmation
     postSignup(params: any) {
-        this._callPostApi('Anonymous', this.api_path + '/auth', params);
+        this._callPostApi('Anonymous', '/auth', params);
     }
+
+    // ログイン email, password
+    postLogin(params: any) {
+        this._callPostApi('Anonymous', '/auth/sign_in', params);
+    }
+
+    deleteLogout() {
+        this._callDeleteApi('Anonymous', '/auth/sign_out');
+    }
+
     // コース一覧を取得 引数:なし
     getCourses() {
-        this._callGetApi('Anonymous', this.api_path + '/courses');
+        this._callGetApi('Anonymous', '/courses');
     }
 
     _callGetApi(type: string, url: string, params?: any) {
@@ -33,7 +43,7 @@ export class ApiService {
         //     //     return params[value]
         //     // });
         // }
-        url = this._urlWithQuery(url, params);
+        url = this.api_path + this._urlWithQuery(url, params);
         if (type === 'Anonymous') {
             // For non-protected routes, just use Http
             this._http.get(url)
@@ -53,7 +63,7 @@ export class ApiService {
         // }
     }
     _callPostApi(type: string, url: string, params?: any) {
-        url = this._urlWithQuery(url, params);
+        url = this.api_path + this._urlWithQuery(url, params);
         if (type === 'Anonymous') {
             if (this.params) {
                 url += this.params;
@@ -63,6 +73,20 @@ export class ApiService {
                     data => console.log(data),
                     err => console.log(err),
                     () => console.log('Random Quote Complete')
+                )
+        }
+    }
+    _callDeleteApi(type: string, url: string, params?: any) {
+        url = this.api_path + this._urlWithQuery(url, params);
+        if (type === 'Anonymous') {
+            if (this.params) {
+                url += this.params;
+            }
+            this._http.delete(url)
+                .subscribe(
+                data => console.log(data),
+                err => console.log(err),
+                () => console.log('Random Quote Complete')
                 )
         }
     }
