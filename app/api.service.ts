@@ -35,6 +35,19 @@ export class ApiService {
         this._callGetApi('Anonymous', '/courses');
     }
 
+    // コースを作成, title, description, allow_training, allow_test, allow_show_answer, is_private, questions_attributes, text, hint, questiontype, answer_attributes, value, is_dummy
+    postCreateCourse(params: any) {
+        this._callPostApi('Anonymous', '/courses/new', params);
+    }
+
+    postEditCourse(id: string, params: any) {
+        this._callPostApi('Anonymous', '/courses/' + id + 'edit', params);
+    }
+
+    getCourseDetail(id: string) {
+        this._callGetApi('Anonymous', '/courses/' + id);
+    }
+
     _callGetApi(type: string, url: string, params?: any) {
         // if (params) {
         //     params = JSON.stringify(params)
