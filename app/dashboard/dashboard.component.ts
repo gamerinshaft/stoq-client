@@ -24,9 +24,9 @@ export class DashboardComponent implements OnInit {
   public heroes: Hero[];
   public selectedHero: Hero;
 
-  constructor(private _heroService: HeroService, private _router: Router, private _http: ApiService) {
-    console.log(_http.getCourses());
-    console.log(this.response)
+  constructor(private _heroService: HeroService, private _router: Router, private _api: ApiService) {
+      console.log(_api.postSignup({ hoge: "fa"}));
+      console.log(this.response)
   }
 
 
