@@ -1,11 +1,18 @@
+
 <div class="signup">
-  <div class="container">
-    <h1>Signupしましょう？</h1>
-    <label>メールアドレス</label>
-    <input>
-    <label>パスワード</label>
-    <input>
-    <button (click)="goLogin()">ユーザー登録</button>
-    <button (click)="hoge()">hoge</button>
+  <div class="p-container">
+    <h1 class="str-u-text-center"></h1>
+    <p class="str-u-text-center str-u-m20-b p-description">ユーザー登録</p>
+    <form class="str-form">
+      <div class="str-form-group">
+        <input type="email" placeholder="メールアドレス" />
+      </div>
+      <div class="str-form-group">
+        <input type="password" placeholder="パスワード" />
+      </div>
+      <div class="str-form-group">
+        <button class="str-btn str-btn-block str-btn-cuxino" type="submit">登録</button>
+      </div>
+    </form>
   </div>
 </div>
