@@ -11,7 +11,7 @@ import {HTTP_PROVIDERS, Http, Headers } from 'angular2/http';
 @Injectable()
 
 export class ApiService {
-
+    response: any;
     public api_path = 'http://api.stoq.jp/api/v1';
     constructor(private _http: Http) {}
 
@@ -49,23 +49,21 @@ export class ApiService {
     }
 
     _callGetApi(type: string, url: string, params?: any) {
-        // if (params) {
-        //     params = JSON.stringify(params)
-        //     console.log(params)
-        //     // log = Object.keys(params).map(function(value, index) {
-        //     //     return params[value]
-        //     // });
-        // }
+        this.response = null;
         url = this.api_path + this._urlWithQuery(url, params);
+        console.log(url)
         if (type === 'Anonymous') {
             // For non-protected routes, just use Http
             this._http.get(url)
                 .subscribe(
-                    data => console.log(data),
-                    err => console.log(err),
-                    () => console.log('Random Quote Complete')
+                data => this.response = data,
+                err => {
+                    this.response = err; console.log(err);
+                },
+                () => console.log('Random Quote Complete')
                 );
         }
+        return "hoge";
         // if (type === 'Secured') {
         //   // For protected routes, use AuthHttp
         //   this._authHttp.get(url)
@@ -76,37 +74,37 @@ export class ApiService {
         // }
     }
     _callPostApi(type: string, url: string, params?: any) {
+        this.response = null;
         url = this.api_path + this._urlWithQuery(url, params);
         if (type === 'Anonymous') {
-            if (this.params) {
-                url += this.params;
-            }
             this._http.post(url)
                 .subscribe(
-                    data => console.log(data),
-                    err => console.log(err),
+                    data => this.response = data,
+                    err => this.response = err,
                     () => console.log('Random Quote Complete')
-                )
+                );
         }
+        console.log(this.response)
+        return this.response;
     }
     _callDeleteApi(type: string, url: string, params?: any) {
+        this.response = null;
         url = this.api_path + this._urlWithQuery(url, params);
         if (type === 'Anonymous') {
-            if (this.params) {
-                url += this.params;
-            }
             this._http.delete(url)
                 .subscribe(
-                data => console.log(data),
-                err => console.log(err),
+                data => this.response = data,
+                err => this.response = err,
                 () => console.log('Random Quote Complete')
-                )
+                );
         }
+        console.log(this.response)
+        return this.response;
     }
 
-    _urlWithQuery(url: string, params: any) {
+    _urlWithQuery(url: string, params?: any) {
         if (params) {
-            Object.keys(params).forEach((value, index) =>
+            Object.keys(params).forEach((value, index) => {
                 if (index == 0) {
                     url += "?" + value + "=" + params[value];
                 } else {

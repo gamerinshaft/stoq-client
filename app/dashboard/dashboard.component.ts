@@ -1,11 +1,12 @@
-import {Component} from 'angular2/core';
+import {Component, OnInit} from 'angular2/core';
 import { Router } from 'angular2/router';
-import {HeaderComponent} from 'app/layouts/header/header.component';
-import {SidebarComponent} from 'app/layouts/sidebar/sidebar.component';
-import {Hero} from 'app/hero';
-import {HeroDetailComponent} from 'app/hero-detail.component';
-import {HeroService} from 'app/hero.service';
-import {ApiService} from 'app/api.service';
+import {HeaderComponent} from '../layouts/header/header.component';
+import {SidebarComponent} from '../layouts/sidebar/sidebar.component';
+import {Hero} from '../hero';
+import {HeroDetailComponent} from '../hero-detail.component';
+import {HeroService} from '../hero.service';
+import {ApiService} from '../api.service';
+
 @Component({
   selector: 'dashboard',
   templateUrl: 'app/dashboard/dashboard.component.html',
@@ -17,7 +18,7 @@ import {ApiService} from 'app/api.service';
 export class DashboardComponent implements OnInit {
   public jwt: string;
   public decodedJwt: string;
-  public response: string;
+  public response: any;
   public api: string;
   public title = 'コース一覧';
   public modal = 'signup';
@@ -27,7 +28,6 @@ export class DashboardComponent implements OnInit {
   constructor(private _heroService: HeroService, private _router: Router, private _api: ApiService) {
       // console.log(_api.postSignup({ email: "mail3@example.com", password: "password", password_confirmation: "password"}));
       // console.log(_api.getCourses());
-      console.log(this.response);
   }
 
 
@@ -37,10 +37,9 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.getHeroes();
-    // if(!localStorage.getItem("auth_token")){
-    //   console.log("nothing auth_token");
-    //   this._router.navigate(['Login', { }]);
-    // }
+    this.response = this._api.getCourses();
+    console.log(this.response);
+      // this._router.navigate(['Login', { }]);
   }
 
   onSelect(hero: Hero) { this.selectedHero = hero; }

@@ -3,8 +3,7 @@ import {Router} from 'angular2/router';
 @Component({
   selector: 'signup',
   templateUrl: 'app/signup/signup.component.html',
-  styleUrls: ['app/signup/signup.component.css'],
-  inputs: ['modal']
+  styleUrls: ['app/signup/signup.component.css']
 })
 
 export class SignupComponent {
@@ -15,8 +14,6 @@ export class SignupComponent {
   }
 
   hoge() {
-      this.modal = 'login';
-      console.log(this.modal);
   }
 }
 
