@@ -2,15 +2,17 @@ import {Component} from 'angular2/core';
 import {Injectable} from 'angular2/core';
 import { CORE_DIRECTIVES } from 'angular2/common';
 import {HTTP_PROVIDERS, Http, Headers } from 'angular2/http';
+
 @Component({
   directives: [CORE_DIRECTIVES],
   providers: [HTTP_PROVIDERS]
 })
+
 @Injectable()
+
 export class ApiService {
 
     public api_path = 'http://api.stoq.jp/api/v1';
-    private params: string;
     constructor(private _http: Http) {}
 
 
@@ -23,19 +25,6 @@ export class ApiService {
         this._callGetApi('Anonymous', this.api_path + '/courses');
     }
 
-
-    callGetAnonymousApi(url: string, params?: any) {
-        if (params) {
-            this._callGetApi('Anonymous', url, params);
-        } else {
-            this._callGetApi('Anonymous', url);
-        }
-    }
-
-    callGetSecuredApi() {
-        this._callGetApi('Secured', 'http://localhost:3001/api/protected/random-quote');
-    }
-
     _callGetApi(type: string, url: string, params?: any) {
         // if (params) {
         //     params = JSON.stringify(params)
@@ -44,6 +33,7 @@ export class ApiService {
         //     //     return params[value]
         //     // });
         // }
+        url = this._urlWithQuery(url, params);
         if (type === 'Anonymous') {
             // For non-protected routes, just use Http
             this._http.get(url)
@@ -63,16 +53,7 @@ export class ApiService {
         // }
     }
     _callPostApi(type: string, url: string, params?: any) {
-        this.params = null;
-        if (params) {
-            Object.keys(params).forEach((value, index) =>
-                if (index == 0) {
-                    this.params = "?" + value + "=" + params[value];
-                } else {
-                    this.params += "&" + value + "=" + params[value];
-                }
-            });
-        }
+        url = this._urlWithQuery(url, params);
         if (type === 'Anonymous') {
             if (this.params) {
                 url += this.params;
@@ -84,5 +65,18 @@ export class ApiService {
                     () => console.log('Random Quote Complete')
                 )
         }
+    }
+
+    _urlWithQuery(url: string, params: any) {
+        if (params) {
+            Object.keys(params).forEach((value, index) =>
+                if (index == 0) {
+                    url += "?" + value + "=" + params[value];
+                } else {
+                    url += "&" + value + "=" + params[value];
+                }
+            });
+        }
+        return url;
     }
 }
