@@ -25,7 +25,7 @@ export class DashboardComponent implements OnInit {
   public heroes: Hero[];
   public selectedHero: Hero;
 
-  constructor(private _heroService: HeroService, private _router: Router, private _http: Http) { }
+  constructor(private _heroService: HeroService, private _router: Router, private _http: Http) {}
 
 
   getHeroes() {
@@ -34,6 +34,8 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.getHeroes();
+    console.log(this.callGetAnonymousApi())
+    console.log(this.response)
     // if(!localStorage.getItem("auth_token")){
     //   console.log("nothing auth_token");
     //   this._router.navigate(['Login', { }]);
@@ -43,7 +45,7 @@ export class DashboardComponent implements OnInit {
   onSelect(hero: Hero) { this.selectedHero = hero; }
 
   callGetAnonymousApi() {
-    this._callGetApi('Anonymous', 'http://localhost:3001/api/random-quote');
+    this._callGetApi('Anonymous', 'http://api.stoq.jp/api/v1/courses');
   }
 
   callGetSecuredApi() {
@@ -56,8 +58,9 @@ export class DashboardComponent implements OnInit {
       // For non-protected routes, just use Http
       this._http.get(url)
         .subscribe(
-        response => this.response = response.text(),
-        error => this.response = error.text()
+          data => console.log(data),
+          err => console.log(err),
+          () => console.log('Random Quote Complete')
       );
     }
     // if (type === 'Secured') {
