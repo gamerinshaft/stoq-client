@@ -23,6 +23,7 @@ export class LoginComponent {
   submit() {
     this._api.postLogin({ email: this.email, password: this.password }).subscribe(
       data => {
+        console.log(data.headers);
         localStorage.setItem('Access-Token', data.headers.get('Access-Token'));
         localStorage.setItem('Client', data.headers.get('Client'));
         localStorage.setItem('Uid', this.email);

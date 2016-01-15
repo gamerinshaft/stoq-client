@@ -23,10 +23,11 @@ export class SignupComponent {
   submit() {
     this._api.postSignup({ email: this.email, password: this.password, password_confirmation: this.password_confirmation }).subscribe(
       data => {
-        localStorage.setItem('Access-Token', data.headers.get('Access-Token'));
-        localStorage.setItem('Client', data.headers.get('Client'));
-        localStorage.setItem('Uid', this.email);
-        this._router.navigate(['Dashboard', {}]);
+        console.log(data.headers),
+          localStorage.setItem('Access-Token', data.headers.get('Access-Token'));
+          localStorage.setItem('Client', data.headers.get('Client'));
+          localStorage.setItem('Uid', this.email);
+          this._router.navigate(['Dashboard', {}]);
       },
       err => alert("error"),
       () => console.log('signup success')
