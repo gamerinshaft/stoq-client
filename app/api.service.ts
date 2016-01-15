@@ -50,10 +50,12 @@ export class ApiService {
     }
 
     _callGetApi(type: string, url: string, params?: any) {
+        this._setHeader();
         url = this.api_path + this._urlWithQuery(url, params);
         if (type === 'Anonymous') {
             // For non-protected routes, just use Http
-            return this._http.get(url, { headers: contentHeaders })
+            console.log(contentHeaders);
+            return this._http.get(url, { headers: contentHeaders });
                 // .subscribe(res => {
                 //     this.status = res.status;
                 //    this .body = res.json();
@@ -69,14 +71,15 @@ export class ApiService {
         // }
     }
     _callPostApi(type: string, url: string, params?: any) {
-        let body = JSON.stringify(params)
+        this._setHeader();
+        let body = JSON.stringify(params);
         url = this.api_path + url
         if (type === 'Anonymous') {
             return this._http.post(url, body, { headers: contentHeaders });
         }
     }
     _callDeleteApi(type: string, url: string, params?: any) {
-        console.log(contentHeaders);
+        this._setHeader();
         url = this.api_path + this._urlWithQuery(url, params);
         if (type === 'Anonymous') {
             return this._http.delete(url, { headers: contentHeaders });
@@ -84,6 +87,7 @@ export class ApiService {
     }
 
     _urlWithQuery(url: string, params?: any) {
+        this._setHeader();
         if (params) {
             Object.keys(params).forEach((value, index) => {
                 if (index == 0) {
@@ -94,5 +98,17 @@ export class ApiService {
             });
         }
         return url;
+    }
+
+    _setHeader() {
+        if(localStorage.getItem('Access-Token') && localStorage.getItem('Client') && localStorage.getItem('Uid')){
+            contentHeaders.set('Access-Token', localStorage.getItem('Access-Token'));
+            contentHeaders.set('Client', localStorage.getItem('Client'));
+            contentHeaders.set('Uid', localStorage.getItem('Uid'));
+        }else{
+            contentHeaders.delete('Access-Token');
+            contentHeaders.delete('Client');
+            contentHeaders.delete('Uid');
+        }
     }
 }

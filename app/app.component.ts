@@ -35,7 +35,10 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this._api.getCourses().subscribe(
       data => this._router.navigate(['Dashboard', {}]),
-      err => this._router.navigate(['Login', {}]),
+      err => {
+        localStorage.clear();
+        this._router.navigate(['Login', {}]);
+      },
       () => console.log('Random Quote Complete')
     );
     // this.getHeroes();
