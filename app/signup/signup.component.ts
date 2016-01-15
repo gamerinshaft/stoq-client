@@ -7,7 +7,7 @@ import {ApiService} from '../api.service';
   templateUrl: 'app/signup/signup.component.html',
   styleUrls: ['app/signup/signup.component.css'],
   providers: [ApiService],
-  inputs: ['email', 'password']
+  inputs: ['email', 'password', 'password_confirmation']
 })
 
 export class SignupComponent {
@@ -24,7 +24,7 @@ export class SignupComponent {
     this._api.postSignup({ email: this.email, password: this.password, password_confirmation: this.password_confirmation }).subscribe(
       data => this._router.navigate(['Dashboard', {}]),
       err => alert("error"),
-      () => console.log('Random Quote Complete')
+      () => console.log('signup success')
     );
   }
 }

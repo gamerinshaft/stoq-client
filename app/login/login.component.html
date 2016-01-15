@@ -2,17 +2,17 @@
   <div class="p-container">
     <h1 class="str-u-text-center"></h1>
     <p class="str-u-text-center str-u-m20-b p-description">ログイン</p>
-    <form class="str-form">
+    <div class="str-form">
       <div class="str-form-group">
-        <input type="email" placeholder="メールアドレス" />
+        <input [(ngModel)]="email" type="email" placeholder="メールアドレス" />
       </div>
       <div class="str-form-group">
-        <input type="password" placeholder="パスワード" />
+        <input [(ngModel)]="password" type="password" placeholder="パスワード" />
       </div>
       <div class="str-form-group">
-        <button class="str-btn str-btn-block str-btn-cuxino" type="submit">登録</button>
+        <button class="str-btn str-btn-block str-btn-cuxino" (click)=submit()>登録</button>
       </div>
-    </form>
+    </div>
     <p (click)=navigateToSignup()>新規登録はこちら</p>
   </div>
 </div>
