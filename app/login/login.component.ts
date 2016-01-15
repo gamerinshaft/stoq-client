@@ -3,13 +3,14 @@ import {Router} from 'angular2/router';
 import {ApiService} from '../api.service';
 
 @Component({
-    selector: 'login',
-    templateUrl: 'app/login/login.component.html',
-    styleUrls: ['app/login/login.component.css'],
-    providers: [ApiService],
-    inputs: ['email', 'password']
+  selector: 'login',
+  templateUrl: 'app/login/login.component.html',
+  styleUrls: ['app/login/login.component.css'],
+  providers: [ApiService],
+  inputs: ['email', 'password']
 })
 export class LoginComponent {
+
   private email: string;
   private password: string;
 
@@ -21,7 +22,11 @@ export class LoginComponent {
 
   submit() {
     this._api.postLogin({ email: this.email, password: this.password }).subscribe(
-      data => this._router.navigate(['Dashboard', {}]),
+      data => {
+        console.log(data.headers),
+        localStorage.setItem('Access-Token', data.headers.get('Access-Token'))
+        // this._router.navigate(['Dashboard', {}])
+      },
       err => alert("error"),
       () => console.log('login success')
     );
