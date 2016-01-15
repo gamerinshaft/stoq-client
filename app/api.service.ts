@@ -99,8 +99,15 @@ export class ApiService {
     }
 
     _setHeader() {
-        contentHeaders.set('Access-Token', localStorage.getItem('Access-Token'));
-        contentHeaders.set('Client', localStorage.getItem('Client'));
-        contentHeaders.set('Uid', localStorage.getItem('Uid'));
+        if(localStorage.getItem('Access-Token')){
+            contentHeaders.set('Access-Token', localStorage.getItem('Access-Token'));
+        }
+        if (localStorage.getItem('Client')) {
+            contentHeaders.set('Client', localStorage.getItem('Client'));
+        }
+        if (localStorage.getItem('Uid')) {
+            contentHeaders.set('Uid', localStorage.getItem('Uid'));
+        }
+        console.log(contentHeaders)
     }
 }
