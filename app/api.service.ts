@@ -14,7 +14,6 @@ import { contentHeaders } from './common/headers';
 export class ApiService {
     public api_path = 'http://api.stoq.jp/api/v1';
     private status: number;
-    private body: string;
     constructor(private _http: Http) {}
 
 
@@ -50,11 +49,11 @@ export class ApiService {
         return this._callGetApi('Anonymous', '/courses/' + id);
     }
 
-    _callGetApi(type: string, url: string, params?: any)  {
+    _callGetApi(type: string, url: string, params?: any) {
         url = this.api_path + this._urlWithQuery(url, params);
         if (type === 'Anonymous') {
             // For non-protected routes, just use Http
-            return this._http.get(url)
+            return this._http.get(url, { headers: contentHeaders })
                 // .subscribe(res => {
                 //     this.status = res.status;
                 //    this .body = res.json();
@@ -70,16 +69,17 @@ export class ApiService {
         // }
     }
     _callPostApi(type: string, url: string, params?: any) {
-        this.body = JSON.stringify(params)
+        let body = JSON.stringify(params)
         url = this.api_path + url
         if (type === 'Anonymous') {
-            return this._http.post(url, this.body, { headers: contentHeaders });
+            return this._http.post(url, body, { headers: contentHeaders });
         }
     }
     _callDeleteApi(type: string, url: string, params?: any) {
+        console.log(contentHeaders);
         url = this.api_path + this._urlWithQuery(url, params);
         if (type === 'Anonymous') {
-            return this._http.delete(url);
+            return this._http.delete(url, { headers: contentHeaders });
         }
     }
 
