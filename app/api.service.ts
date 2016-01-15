@@ -43,7 +43,7 @@ export class ApiService {
     }
 
     postEditCourse(id: string, params: any) {
-        return this._callPostApi('Anonymous', '/courses/' + id + 'edit', params);
+        return this._callPostApi('Anonymous', '/courses/' + id + '/edit', params);
     }
 
     getCourseDetail(id: string) {
