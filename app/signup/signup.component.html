@@ -5,13 +5,16 @@
     <p class="str-u-text-center str-u-m20-b p-description">ユーザー登録</p>
     <form class="str-form">
       <div class="str-form-group">
-        <input type="email" placeholder="メールアドレス" />
+        <input type="email" [(ngModel)]="email" placeholder="メールアドレス" />
       </div>
       <div class="str-form-group">
-        <input type="password" placeholder="パスワード" />
+        <input type="password" [(ngModel)]="password" placeholder="パスワード" />
       </div>
       <div class="str-form-group">
-        <button class="str-btn str-btn-block str-btn-cuxino" type="submit">登録</button>
+        <input type="password" [(ngModel)]="password_confirmation" placeholder="確認用パスワード" />
+      </div>
+      <div class="str-form-group">
+        <button class="str-btn str-btn-block str-btn-cuxino" (click)=submit()>登録</button>
       </div>
     </form>
     <p (click)=navigateToLogin()>ログインはこちら</p>

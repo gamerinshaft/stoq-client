@@ -72,9 +72,10 @@ export class ApiService {
         // }
     }
     _callPostApi(type: string, url: string, params?: any) {
+        this.body = JSON.stringify(params)
         url = this.api_path + url
         if (type === 'Anonymous') {
-            return this._http.post(url, body, { headers: contentHeaders });
+            return this._http.post(url, this.body, { headers: contentHeaders });
         }
     }
     _callDeleteApi(type: string, url: string, params?: any) {
