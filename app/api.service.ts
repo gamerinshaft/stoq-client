@@ -50,6 +50,7 @@ export class ApiService {
     }
 
     _callGetApi(type: string, url: string, params?: any) {
+        this._setHeader();
         url = this.api_path + this._urlWithQuery(url, params);
         if (type === 'Anonymous') {
             // For non-protected routes, just use Http
@@ -69,14 +70,15 @@ export class ApiService {
         // }
     }
     _callPostApi(type: string, url: string, params?: any) {
-        let body = JSON.stringify(params)
+        this._setHeader();
+        let body = JSON.stringify(params);
         url = this.api_path + url
         if (type === 'Anonymous') {
             return this._http.post(url, body, { headers: contentHeaders });
         }
     }
     _callDeleteApi(type: string, url: string, params?: any) {
-        console.log(contentHeaders);
+        this._setHeader();
         url = this.api_path + this._urlWithQuery(url, params);
         if (type === 'Anonymous') {
             return this._http.delete(url, { headers: contentHeaders });
@@ -94,5 +96,18 @@ export class ApiService {
             });
         }
         return url;
+    }
+
+    _setHeader() {
+        if(localStorage.getItem('Access-Token')){
+            contentHeaders.set('Access-Token', localStorage.getItem('Access-Token'));
+        }
+        if (localStorage.getItem('Client')) {
+            contentHeaders.set('Client', localStorage.getItem('Client'));
+        }
+        if (localStorage.getItem('Uid')) {
+            contentHeaders.set('Uid', localStorage.getItem('Uid'));
+        }
+        console.log(contentHeaders)
     }
 }
