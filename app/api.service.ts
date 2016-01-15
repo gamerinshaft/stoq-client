@@ -60,8 +60,6 @@ export class ApiService {
                 //    this .body = res.json();
                 // });
         }
-        console.log(this.status)
-        console.log(this.body)
         // if (type === 'Secured') {
         //   // For protected routes, use AuthHttp
         //   this._authHttp.get(url)
