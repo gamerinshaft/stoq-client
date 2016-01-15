@@ -50,11 +50,12 @@ export class ApiService {
         return this._callGetApi('Anonymous', '/courses/' + id);
     }
 
-    _callGetApi(type: string, url: string, params?: any)  {
+    _callGetApi(type: string, url: string, params?: any) {
+        this._setHeader();
         url = this.api_path + this._urlWithQuery(url, params);
         if (type === 'Anonymous') {
             // For non-protected routes, just use Http
-            return this._http.get(url)
+            return this._http.get(url, { headers: contentHeaders });
                 // .subscribe(res => {
                 //     this.status = res.status;
                 //    this .body = res.json();
@@ -70,6 +71,7 @@ export class ApiService {
         // }
     }
     _callPostApi(type: string, url: string, params?: any) {
+        this._setHeader();
         this.body = JSON.stringify(params)
         url = this.api_path + url
         if (type === 'Anonymous') {
@@ -77,13 +79,15 @@ export class ApiService {
         }
     }
     _callDeleteApi(type: string, url: string, params?: any) {
+        this._setHeader();
         url = this.api_path + this._urlWithQuery(url, params);
         if (type === 'Anonymous') {
-            return this._http.delete(url);
+            return this._http.delete(url, { headers: contentHeaders });
         }
     }
 
     _urlWithQuery(url: string, params?: any) {
+        this._setHeader();
         if (params) {
             Object.keys(params).forEach((value, index) => {
                 if (index == 0) {
@@ -94,5 +98,10 @@ export class ApiService {
             });
         }
         return url;
+    }
+    _setHeader() {
+        contentHeaders.set('Access-Token', localStorage.getItem('Access-Token'));
+        contentHeaders.set('Client', localStorage.getItem('Client'));
+        contentHeaders.set('Uid', localStorage.getItem('Uid'));
     }
 }

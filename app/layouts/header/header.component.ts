@@ -15,8 +15,13 @@ export class HeaderComponent {
 
   logout() {
       this._api.deleteLogout().subscribe(
-          data => console.log("logout"),
-          err => alert("error"),
+          data => {
+              localStorage.removeItem('Uid');
+              localStorage.removeItem('Client');
+              localStorage.removeItem('Acess-token');
+              this._router.parent.navigate(['Login', {}])
+          },
+          err => console.log(err),
           () => console.log('signup success')
       );
   }
