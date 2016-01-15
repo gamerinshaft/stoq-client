@@ -9,11 +9,8 @@ import {Router} from 'angular2/router';
 export class SignupComponent {
   constructor(private _router: Router){}
 
-  goLogin() {
+  navigateToLogin() {
       this._router.navigate(['Login', {}]);
-  }
-
-  hoge() {
   }
 }
 
