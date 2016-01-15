@@ -55,6 +55,7 @@ export class ApiService {
         url = this.api_path + this._urlWithQuery(url, params);
         if (type === 'Anonymous') {
             // For non-protected routes, just use Http
+            console.log(contentHeaders);
             return this._http.get(url, { headers: contentHeaders });
                 // .subscribe(res => {
                 //     this.status = res.status;
@@ -100,8 +101,14 @@ export class ApiService {
         return url;
     }
     _setHeader() {
-        contentHeaders.set('Access-Token', localStorage.getItem('Access-Token'));
-        contentHeaders.set('Client', localStorage.getItem('Client'));
-        contentHeaders.set('Uid', localStorage.getItem('Uid'));
+        if(localStorage.getItem('Access-Token') && localStorage.getItem('Client') && localStorage.getItem('Uid')){
+            contentHeaders.set('Access-Token', localStorage.getItem('Access-Token'));
+            contentHeaders.set('Client', localStorage.getItem('Client'));
+            contentHeaders.set('Uid', localStorage.getItem('Uid'));
+        }else{
+            contentHeaders.delete('Access-Token');
+            contentHeaders.delete('Client');
+            contentHeaders.delete('Uid');
+        }
     }
 }
