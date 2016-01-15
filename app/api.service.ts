@@ -110,11 +110,6 @@ export class ApiService {
             this.headers.append('Access-Token', localStorage.getItem('Access-Token'));
             this.headers.append('Client', localStorage.getItem('Client'));
             this.headers.append('Uid', localStorage.getItem('Uid'));
-        }else{
-            // console.log("delete_header");
-            // this.headers.delete('Access-Token');
-            // this.headers.delete('Client');
-            // this.headers.delete('Uid');
         }
 
         console.log(this.headers);
