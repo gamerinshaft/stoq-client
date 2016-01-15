@@ -36,9 +36,11 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.getHeroes();
-
-    // console.log("get" + this._api.getCourses());
-      // this._router.navigate(['Login', { }]);
+    this._api.getCourses().subscribe(
+        data => console.log(data),
+        err => console.log(err),
+        () => console.log("getCourses")
+    );
   }
 
   onSelect(hero: Hero) { this.selectedHero = hero; }

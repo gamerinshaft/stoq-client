@@ -104,14 +104,14 @@ export class ApiService {
     _setHeader() {
         this.headers = new Headers();
         this.headers.append('Accept', 'application/json');
-        this.headers.append('Content-Type', 'application/json');
-
-        // if(localStorage.getItem('Access-Token') && localStorage.getItem('Client') && localStorage.getItem('Uid')){
-        //     console.log("set_header");
-        //     this.headers.append('Access-Token', localStorage.getItem('Access-Token'));
-        //     this.headers.append('Client', localStorage.getItem('Client'));
-        //     this.headers.append('Uid', localStorage.getItem('Uid'));
-        // }
+        this.headers.append('Content-Type', 'application/json; charset=utf-8');
+        this.headers.append('Cache-Control', 'no-chache');
+        if(localStorage.getItem('Access-Token') && localStorage.getItem('Client') && localStorage.getItem('Uid')){
+            console.log("set_header");
+            this.headers.append('Access-Token', localStorage.getItem('Access-Token'));
+            this.headers.append('Client', localStorage.getItem('Client'));
+            this.headers.append('Uid', localStorage.getItem('Uid'));
+        }
 
         // console.log(this.headers);
     }
