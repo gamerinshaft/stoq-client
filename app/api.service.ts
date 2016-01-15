@@ -71,11 +71,13 @@ export class ApiService {
         // }
     }
     _callPostApi(type: string, url: string, params?: any) {
+        // this._setHeader();
         this._setHeader();
-        let body = JSON.stringify(params);
+        params = JSON.stringify(params);
+        console.log(params)
         url = this.api_path + url
         if (type === 'Anonymous') {
-            return this._http.post(url, body, { headers: this.headers });
+            return this._http.post(url, params, { headers: this.headers });
         }
     }
     _callDeleteApi(type: string, url: string, params?: any) {
@@ -87,7 +89,6 @@ export class ApiService {
     }
 
     _urlWithQuery(url: string, params?: any) {
-        this._setHeader();
         if (params) {
             Object.keys(params).forEach((value, index) => {
                 if (index == 0) {
@@ -105,13 +106,13 @@ export class ApiService {
         this.headers.append('Accept', 'application/json');
         this.headers.append('Content-Type', 'application/json');
 
-        if(localStorage.getItem('Access-Token') && localStorage.getItem('Client') && localStorage.getItem('Uid')){
-            console.log("set_header");
-            this.headers.append('Access-Token', localStorage.getItem('Access-Token'));
-            this.headers.append('Client', localStorage.getItem('Client'));
-            this.headers.append('Uid', localStorage.getItem('Uid'));
-        }
+        // if(localStorage.getItem('Access-Token') && localStorage.getItem('Client') && localStorage.getItem('Uid')){
+        //     console.log("set_header");
+        //     this.headers.append('Access-Token', localStorage.getItem('Access-Token'));
+        //     this.headers.append('Client', localStorage.getItem('Client'));
+        //     this.headers.append('Uid', localStorage.getItem('Uid'));
+        // }
 
-        console.log(this.headers);
+        // console.log(this.headers);
     }
 }
