@@ -3,20 +3,22 @@ import {RouteConfig, ROUTER_DIRECTIVES, Router} from 'angular2/router';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {LoginComponent} from './login/login.component';
 import {SignupComponent} from './signup/signup.component';
+import {CoursesComponent} from './courses/base.component';
 import {ApiService} from './api.service';
 
 @Component({
     selector: 'my-app',
     templateUrl: 'app/app.component.html',
     styleUrls: ['app/app.component.scss'],
-    directives: [ROUTER_DIRECTIVES, LoginComponent, SignupComponent, DashboardComponent],
+    directives: [ROUTER_DIRECTIVES, LoginComponent, SignupComponent, DashboardComponent, CoursesComponent],
     providers: [ApiService]
 })
 
 @RouteConfig([
-    { path: '/dashboard', name: 'Dashboard', component: DashboardComponent, useAsDefault: false },
-    { path: '/login', name: 'Login', component: LoginComponent, useAsDefault: false },
-    { path: '/signup', name: 'Signup', component: SignupComponent, useAsDefault: false }
+    { path: '/dashboard', as: 'Dashboard', component: DashboardComponent, useAsDefault: false },
+    { path: '/courses/...', as: 'Courses', component: CoursesComponent, useAsDefault: false },
+    { path: '/login', as: 'Login', component: LoginComponent, useAsDefault: false },
+    { path: '/signup', as: 'Signup', component: SignupComponent, useAsDefault: false }
   // { path: '/detail/:id', name: 'HeroDetail', component: HeroDetailComponent }
 ])
 
