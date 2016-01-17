@@ -13,6 +13,10 @@ export class HeaderComponent {
   public title = 'Stoq'
   constructor(private _router: Router, private _api: ApiService) { }
 
+  createCourse() {
+    this._router.parent.navigate(['Courses', {}]);
+  }
+
   logout() {
       this._api.deleteLogout().subscribe(
           data => {

@@ -1,6 +1,6 @@
 <h1 class="logo">{{title}}</h1>
 <div class="right-menu">
-  <div class="create-course">create course</div>
+  <div class="create-course" (click)=createCourse()>create course</div>
   <div class="divider">|</div>
   <div class="login active" (click)=logout() >logout</div>
   <div class="signup" (click)="navigateToSingup()" >signup</div>
