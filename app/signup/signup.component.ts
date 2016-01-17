@@ -1,6 +1,6 @@
 import {Component} from 'angular2/core';
 import {Router} from 'angular2/router';
-import {ApiService} from '../api.service';
+import {ApiService} from '../services/api.service';
 
 @Component({
   selector: 'signup',

@@ -5,7 +5,7 @@ import {SidebarComponent} from '../layouts/sidebar/sidebar.component';
 import {Hero} from '../hero';
 import {HeroDetailComponent} from '../hero-detail.component';
 import {HeroService} from '../hero.service';
-import {ApiService} from '../api.service';
+import {ApiService} from '../services/api.service';
 
 @Component({
   selector: 'dashboard',

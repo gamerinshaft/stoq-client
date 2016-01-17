@@ -4,7 +4,7 @@ import {DashboardComponent} from './dashboard/dashboard.component';
 import {LoginComponent} from './login/login.component';
 import {SignupComponent} from './signup/signup.component';
 import {CoursesComponent} from './courses/base.component';
-import {ApiService} from './api.service';
+import {ApiService} from './services/api.service';
 
 @Component({
     selector: 'my-app',

@@ -1,11 +1,11 @@
 import {Component} from 'angular2/core';
 import {Router} from 'angular2/router';
-import {ApiService} from '../../services/api.service';
+import {ApiService} from '../services/api.service';
 
 @Component({
     selector: 'courses-new',
-    templateUrl: 'app/courses/new/new.component.html',
-    styleUrls: ['app/courses/new/new.component.css'],
+    templateUrl: 'app/courses/new.component.html',
+    styleUrls: ['app/courses/new.component.css'],
     providers: [ApiService]
 })
 

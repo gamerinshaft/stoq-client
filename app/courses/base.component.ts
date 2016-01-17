@@ -1,6 +1,6 @@
 import {Component} from 'angular2/core';
 import {RouteConfig, ROUTER_DIRECTIVES, Router} from 'angular2/router';
-import {ApiService} from '../api.service';
+import {ApiService} from '../services/api.service';
 import {CoursesNewComponent} from './new/new.component';
 
 @Component({
