@@ -2,7 +2,6 @@ import {Component} from 'angular2/core';
 import {Injectable} from 'angular2/core';
 import { CORE_DIRECTIVES } from 'angular2/common';
 import {HTTP_PROVIDERS, Http, Headers } from 'angular2/http';
-import { contentHeaders } from './common/headers';
 
 @Component({
   directives: [CORE_DIRECTIVES],
@@ -14,6 +13,7 @@ import { contentHeaders } from './common/headers';
 export class ApiService {
     public api_path = 'http://api.stoq.jp/api/v1';
     private status: number;
+    public headers: Headers;
     constructor(private _http: Http) {}
 
 
@@ -54,7 +54,8 @@ export class ApiService {
         url = this.api_path + this._urlWithQuery(url, params);
         if (type === 'Anonymous') {
             // For non-protected routes, just use Http
-            return this._http.get(url, { headers: contentHeaders })
+            console.log(this.headers);
+            return this._http.get(url, { headers: this.headers });
                 // .subscribe(res => {
                 //     this.status = res.status;
                 //    this .body = res.json();
@@ -70,18 +71,20 @@ export class ApiService {
         // }
     }
     _callPostApi(type: string, url: string, params?: any) {
+        // this._setHeader();
         this._setHeader();
-        let body = JSON.stringify(params);
+        params = JSON.stringify(params);
+        console.log(params)
         url = this.api_path + url
         if (type === 'Anonymous') {
-            return this._http.post(url, body, { headers: contentHeaders });
+            return this._http.post(url, params, { headers: this.headers });
         }
     }
     _callDeleteApi(type: string, url: string, params?: any) {
         this._setHeader();
         url = this.api_path + this._urlWithQuery(url, params);
         if (type === 'Anonymous') {
-            return this._http.delete(url, { headers: contentHeaders });
+            return this._http.delete(url, { headers: this.headers });
         }
     }
 
@@ -99,15 +102,17 @@ export class ApiService {
     }
 
     _setHeader() {
-        if(localStorage.getItem('Access-Token')){
-            contentHeaders.set('Access-Token', localStorage.getItem('Access-Token'));
+        this.headers = new Headers();
+        this.headers.append('Accept', 'application/json');
+        this.headers.append('Content-Type', 'application/json; charset=utf-8');
+        this.headers.append('Cache-Control', 'no-chache');
+        if(localStorage.getItem('Access-Token') && localStorage.getItem('Client') && localStorage.getItem('Uid')){
+            console.log("set_header");
+            this.headers.append('Access-Token', localStorage.getItem('Access-Token'));
+            this.headers.append('Client', localStorage.getItem('Client'));
+            this.headers.append('Uid', localStorage.getItem('Uid'));
         }
-        if (localStorage.getItem('Client')) {
-            contentHeaders.set('Client', localStorage.getItem('Client'));
-        }
-        if (localStorage.getItem('Uid')) {
-            contentHeaders.set('Uid', localStorage.getItem('Uid'));
-        }
-        console.log(contentHeaders)
+
+        // console.log(this.headers);
     }
 }
