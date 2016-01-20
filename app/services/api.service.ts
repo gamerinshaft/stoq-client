@@ -101,7 +101,7 @@ export class ApiService {
         return url;
     }
 
-    _setHeader() {
+    _setHeader(method?: string) {
         this.headers = new Headers();
         this.headers.append('Accept', 'application/json');
         this.headers.append('Content-Type', 'application/json; charset=utf-8');
