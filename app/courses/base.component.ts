@@ -2,14 +2,19 @@ import {Component} from 'angular2/core';
 import {RouteConfig, ROUTER_DIRECTIVES, Router} from 'angular2/router';
 import {ApiService} from '../services/api.service';
 import {CoursesNewComponent} from './new/new.component';
+import {HeaderComponent} from '../layouts/header/header.component';
+import {SidebarComponent} from '../layouts/sidebar/sidebar.component';
 
 @Component({
   selector: 'courses',
   template: `
-    <div>base</div>
-    <router-outlet></router-outlet>
+    <header></header>
+    <sidebar></sidebar>
+    <main>
+      <router-outlet></router-outlet>
+    </main>
   `,
-  directives: [ROUTER_DIRECTIVES],
+  directives: [ROUTER_DIRECTIVES, HeaderComponent, SidebarComponent],
   providers: [ApiService]
 })
 
