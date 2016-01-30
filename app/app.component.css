@@ -43,7 +43,3 @@ main {
   top: -1px;
 }
 .selected { background-color: #EEE; color: #369; }
-
-login {
-  display: none;
-}
