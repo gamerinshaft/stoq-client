@@ -6,7 +6,17 @@ import {ApiService} from '../../services/api.service';
     selector: 'courses-new',
     templateUrl: 'app/courses/new/new.component.html',
     styleUrls: ['app/courses/new/new.component.css'],
-    providers: [ApiService]
+    providers: [ApiService],
+    inputs: [
+      'name',
+      'course_type',
+      'description',
+      'question_attributes__text',
+      'question_attributes__hint',
+      'question_attributes__type',
+      'question_attributes__answer_value',
+      'question_attributes__is_dummy'
+     ]
 })
 
 export class CoursesNewComponent {

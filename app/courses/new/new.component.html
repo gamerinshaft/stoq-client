@@ -1,7 +1,24 @@
 <div class="container">
   <div class="form">
     <input type="text" [(ngModel)]="name" placeholder="コース名" />
-    <textarea [(ngModel)]="content"></textarea>
+    <select [(ngModel)]="course_type">
+      <option value="training" selected> トレーニング</option>
+      <option value="test">テスト</option>
+    </select>
+    <textarea placeholder="内容" [(ngModel)]="description"></textarea>
+    <textarea placeholder="問題" [(ngModel)]="question_attributes__text"></textarea>
+    <textarea placeholder="ヒント" [(ngModel)]="question_attributes__hint"></textarea>
+    <select [(ngModel)]="question_attributes__type">
+      <option value="select" selected>選択</option>
+      <option value="input">穴埋め</option>
+      <option value="lecture">穴埋め</option>
+    </select>
+    <textarea type="text" [(ngModel)]="question_attributes__answer_value" placeholder="答え"></textarea>
+    <label>is_dummy?</label>
+    <select [(ngModel)]="question_attributes__is_dummy">
+      <option value="true" selected>true</option>
+      <option value="false">false</option>
+    </select>
     <button class="submit">コースを作成する</button>
   </div>
 </div>
