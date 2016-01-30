@@ -7,6 +7,7 @@ import {SidebarComponent} from '../layouts/sidebar/sidebar.component';
 
 @Component({
   selector: 'courses',
+  styleUrls: ['app/courses/base.component.css'],
   template: `
     <header></header>
     <sidebar></sidebar>
