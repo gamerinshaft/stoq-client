@@ -112,7 +112,6 @@ export class ApiService {
             this.headers.append('Client', localStorage.getItem('Client'));
             this.headers.append('Uid', localStorage.getItem('Uid'));
         }
-
-        // console.log(this.headers);
+        console.log(this.headers);
     }
 }

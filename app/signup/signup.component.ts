@@ -29,7 +29,7 @@ export class SignupComponent {
           localStorage.setItem('Uid', this.email);
           this._router.navigate(['Dashboard', {}]);
       },
-      err => alert("error"),
+      err => console.log(err),
       () => console.log('signup success')
     );
   }
